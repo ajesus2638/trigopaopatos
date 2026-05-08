@@ -462,10 +462,13 @@ Fechar
 
 <script>
 
+/* LIMPAR DADOS ANTIGOS */
+
+localStorage.clear();
+
 /* ================= PRODUTOS ================= */
 
-let produtos =
-JSON.parse(localStorage.getItem("produtos")) || [
+let produtos = [
 
 {
 nome:"Pão Francês",
@@ -489,16 +492,10 @@ imagem:"https://cdn-icons-png.flaticon.com/512/590/590836.png"
 
 /* SALVAR */
 
-function salvarProdutos(){
-
 localStorage.setItem(
 "produtos",
 JSON.stringify(produtos)
 );
-
-}
-
-salvarProdutos();
 
 /* ================= CARRINHO ================= */
 
@@ -518,8 +515,9 @@ item.qtd++;
 }else{
 
 carrinho.push({
-...produto,
+nome:produto.nome,
 preco:parseFloat(produto.preco),
+imagem:produto.imagem,
 qtd:1
 });
 
@@ -613,8 +611,10 @@ document.getElementById("cart")
 
 carrinho.map((item,i)=>{
 
-total +=
-parseFloat(item.preco) * item.qtd;
+let preco =
+parseFloat(item.preco);
+
+total += preco * item.qtd;
 
 return `
 
@@ -653,7 +653,7 @@ onclick="minus(${i})">
 }).join("");
 
 document.getElementById("total")
-.innerText = total.toFixed(2);
+.innerHTML = total.toFixed(2);
 
 }
 
@@ -744,7 +744,7 @@ ${pedido}
 
 *Observações:* ${obs}`;
 
-let numero = "5534999791144";
+let numero = "553499791144";
 
 let url =
 `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
@@ -753,7 +753,7 @@ window.open(url,"_blank");
 
 }
 
-/* ================= INICIAR ================= */
+/* INICIAR */
 
 render();
 
