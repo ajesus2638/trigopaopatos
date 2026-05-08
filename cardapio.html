@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Trigo Pão - Panificadora</title>
 
 <link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
@@ -16,6 +18,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 --marrom:#5a2d18;
 --laranja:#d2691e;
 --fundo:#fff3e6;
+--branco:#ffffff;
 }
 
 *{
@@ -27,6 +30,7 @@ font-family:Arial, Helvetica, sans-serif;
 
 body{
 background:var(--fundo);
+padding-bottom:120px;
 }
 
 /* HEADER */
@@ -36,10 +40,12 @@ background:var(--marrom);
 color:white;
 padding:18px;
 text-align:center;
-font-size:22px;
+font-size:24px;
 font-weight:bold;
+position:sticky;
+top:0;
+z-index:100;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
-position:relative;
 }
 
 .perfil{
@@ -49,21 +55,17 @@ top:50%;
 transform:translateY(-50%);
 width:42px;
 height:42px;
-border-radius:50%;
 border:none;
+border-radius:50%;
 background:rgba(255,255,255,.15);
 color:white;
 font-size:18px;
 cursor:pointer;
 transition:.3s;
-display:flex;
-align-items:center;
-justify-content:center;
 }
 
 .perfil:hover{
 background:var(--laranja);
-transform:translateY(-50%) scale(1.08);
 }
 
 /* BUSCA */
@@ -75,10 +77,11 @@ justify-content:center;
 }
 
 .search input{
-width:90%;
-padding:12px;
-border-radius:30px;
+width:100%;
+max-width:500px;
+padding:14px;
 border:none;
+border-radius:40px;
 outline:none;
 font-size:15px;
 box-shadow:0 2px 8px rgba(0,0,0,.1);
@@ -88,189 +91,9 @@ box-shadow:0 2px 8px rgba(0,0,0,.1);
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-gap:12px;
-padding:12px;
-}
-
-/* CARD */
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:12px;
-padding:12px;
-}
-
-/* CARD */
-.card{
-background:white;
-border-radius:16px;
-padding:10px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-position:relative;
-transition:.2s;
-max-width:140px;
-margin:auto;
-}
-
-.card:hover{
-transform:translateY(-2px);
-}
-
-.card img{
-width:75px;
-height:75px;
-object-fit:cover;
-border-radius:12px;
-margin-bottom:6px;
-}
-
-.card h3{
-font-size:13px;
-margin:4px 0;
-color:#333;
-line-height:1.2;
-}
-
-.card p{
-font-size:14px;
-font-weight:bold;
-color:var(--laranja);
-margin-top:3px;
-}
-
-/* BOTÃO + */
-.add{
-position:absolute;
-bottom:8px;
-right:8px;
-width:28px;
-height:28px;
-border-radius:50%;
-background:var(--laranja);
-color:white;
-border:none;
-font-size:18px;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-/* RESPONSIVO */
-@media(max-width:700px){
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:14px;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:15px;
 padding:15px;
-justify-items:center;
-}
-
-/* CARD */
-.card{
-background:white;
-border-radius:18px;
-padding:12px;
-text-align:center;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
-position:relative;
-transition:.2s;
-width:100%;
-max-width:170px;
-}
-
-.card:hover{
-transform:translateY(-3px);
-}
-
-.card img{
-width:100%;
-height:100px;
-object-fit:cover;
-border-radius:14px;
-margin-bottom:8px;
-}
-
-.card h3{
-font-size:14px;
-margin:5px 0;
-color:#333;
-line-height:1.3;
-}
-
-.card p{
-font-size:15px;
-font-weight:bold;
-color:var(--laranja);
-margin-top:4px;
-}
-
-/* BOTÃO + */
-.add{
-position:absolute;
-bottom:10px;
-right:10px;
-width:30px;
-height:30px;
-border-radius:50%;
-background:var(--laranja);
-color:white;
-border:none;
-font-size:18px;
-cursor:pointer;
-
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-/* RESPONSIVO */
-@media(max-width:700px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-padding:12px;
-}
-
-.card{
-max-width:165px;
-}
-
-.card img{
-height:95px;
-}
-
-}
-.card h3{
-font-size:12px;
-}
-
-.card p{
-font-size:13px;
-}
-
-.add{
-width:26px;
-height:26px;
-font-size:16px;
-}
-
-}
-
-/* GRID */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:14px;
-padding:15px;
-justify-items:center;
 }
 
 /* CARD */
@@ -280,135 +103,56 @@ background:white;
 border-radius:18px;
 padding:12px;
 text-align:center;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+transition:.3s;
 position:relative;
-transition:.2s;
-width:100%;
-max-width:170px;
-min-height:200px;
+overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 
 .card img{
 width:100%;
-height:100px;
+height:130px;
 object-fit:cover;
 border-radius:14px;
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .card h3{
-font-size:14px;
-margin:5px 0;
+font-size:16px;
 color:#333;
-line-height:1.3;
+margin-bottom:5px;
 }
 
 .card p{
-font-size:15px;
+font-size:16px;
 font-weight:bold;
 color:var(--laranja);
-margin-top:4px;
+margin-bottom:10px;
 }
 
 /* BOTÃO + */
 
 .add{
 position:absolute;
-bottom:10px;
-right:10px;
-width:30px;
-height:30px;
+bottom:12px;
+right:12px;
+width:32px;
+height:32px;
+border:none;
 border-radius:50%;
 background:var(--laranja);
 color:white;
-border:none;
 font-size:18px;
 cursor:pointer;
-
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:700px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-padding:12px;
-}
-
-.card{
-max-width:165px;
-min-height:190px;
-padding:10px;
-}
-
-.card img{
-height:90px;
-}
-
-.card h3{
-font-size:13px;
-}
-
-.card p{
-font-size:14px;
-}
-
-.add{
-width:28px;
-height:28px;
-font-size:16px;
-}
-
-.cart{
-position:relative;
-width:95%;
-margin:15px auto;
-left:0;
-bottom:0;
-}
-
-.float{
-right:15px;
-bottom:15px;
-}
-
-}
-/* BOTÃO */
-
-.float{
-position:fixed;
-bottom:20px;
-right:20px;
-height:55px;
-padding:0 18px;
-border-radius:40px;
-background:#d2691e;
-color:white;
-border:none;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,.2);
-z-index:999;
-
-display:flex;
-align-items:center;
-gap:5px;
-
 transition:.3s;
 }
 
-.float:hover{
-transform:scale(1.05);
-background:#b85a18;
+.add:hover{
+transform:scale(1.1);
 }
 
 /* CARRINHO */
@@ -417,38 +161,40 @@ background:#b85a18;
 position:fixed;
 left:15px;
 bottom:15px;
-width:230px;
+width:250px;
 background:white;
+padding:15px;
 border-radius:18px;
-padding:12px;
-box-shadow:0 4px 12px rgba(0,0,0,0.15);
-max-height:300px;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+max-height:320px;
 overflow:auto;
+z-index:99;
 }
 
 .cart h4{
 margin-bottom:10px;
-color:#5a2d18;
+color:var(--marrom);
 }
 
 .item{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:8px 0;
-font-size:13px;
+margin:10px 0;
+font-size:14px;
+gap:5px;
 }
 
 .item-buttons{
 display:flex;
-gap:4px;
+gap:5px;
 }
 
 .btn{
 border:none;
-width:24px;
-height:24px;
-border-radius:6px;
+width:25px;
+height:25px;
+border-radius:7px;
 cursor:pointer;
 color:white;
 font-weight:bold;
@@ -463,10 +209,37 @@ background:red;
 }
 
 .total{
-margin-top:10px;
-font-weight:bold;
+margin-top:12px;
 text-align:center;
-font-size:15px;
+font-weight:bold;
+font-size:16px;
+}
+
+/* BOTÃO FINALIZAR */
+
+.float{
+position:fixed;
+right:20px;
+bottom:20px;
+height:58px;
+padding:0 20px;
+border:none;
+border-radius:40px;
+background:var(--laranja);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:8px;
+box-shadow:0 4px 15px rgba(0,0,0,.2);
+z-index:100;
+transition:.3s;
+}
+
+.float:hover{
+transform:scale(1.05);
 }
 
 /* CHECKOUT */
@@ -477,65 +250,60 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,.5);
 display:none;
 justify-content:center;
 align-items:center;
 padding:20px;
-z-index:1000;
+z-index:999;
 }
 
 .box{
 width:100%;
 max-width:420px;
 background:white;
-border-radius:25px;
 padding:25px;
+border-radius:25px;
 }
 
 .box h2{
 text-align:center;
 margin-bottom:20px;
-color:#5a2d18;
+color:var(--marrom);
 }
 
+.box input,
 .box textarea,
-.box select,
-.box input{
+.box select{
 width:100%;
 padding:14px;
-border:none;
-background:#f4f4f4;
-border-radius:15px;
 margin-bottom:12px;
+border:none;
+border-radius:15px;
+background:#f4f4f4;
 outline:none;
 font-size:15px;
 }
 
 .box textarea{
-height:120px;
+height:100px;
 resize:none;
 }
 
 .finalizar{
 width:100%;
-padding:16px;
+padding:15px;
 border:none;
-border-radius:18px;
-background:#d2691e;
+border-radius:16px;
+background:var(--laranja);
 color:white;
-font-size:17px;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
-transition:.3s;
-}
-
-.finalizar:hover{
-background:#b85a18;
+margin-top:5px;
 }
 
 .fechar{
-margin-top:10px;
 background:#ccc;
 color:#333;
 }
@@ -546,33 +314,18 @@ color:#333;
 
 .grid{
 grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
-}
-
-.card{
-height:190px;
-padding:8px;
 }
 
 .card img{
-height:80px;
-}
-
-.card h3{
-font-size:13px;
-}
-
-.card p{
-font-size:13px;
+height:100px;
 }
 
 .cart{
 position:relative;
 width:95%;
-margin:15px auto;
 left:0;
 bottom:0;
+margin:15px auto;
 }
 
 .float{
@@ -604,13 +357,15 @@ onclick="window.location.href='adm.html'">
 
 <div class="search">
 
-<input id="busca"
-onkeyup="render()"
-placeholder="Buscar pão, café, bolo...">
+<input
+type="text"
+id="busca"
+placeholder="Buscar pão, café, bolo..."
+onkeyup="render()">
 
 </div>
 
-<!-- GRID -->
+<!-- PRODUTOS -->
 
 <div class="grid" id="grid"></div>
 
@@ -621,7 +376,6 @@ placeholder="Buscar pão, café, bolo...">
 <h4>
 
 <i class="fa-solid fa-cart-shopping"></i>
-
 Carrinho
 
 </h4>
@@ -630,7 +384,8 @@ Carrinho
 
 <div class="total">
 
-Total: R$ <span id="total">0.00</span>
+Total: R$
+<span id="total">0.00</span>
 
 </div>
 
@@ -661,41 +416,43 @@ Finalizar Pedido
 
 </h2>
 
-<input type="text"
+<input
+type="text"
 id="nome"
 placeholder="Seu nome">
 
-<input type="tel"
+<input
+type="tel"
 id="telefone"
 placeholder="Seu telefone">
 
-<input type="text"
+<input
+type="text"
 id="endereco"
 placeholder="Seu endereço">
 
-<textarea id="obs"
+<textarea
+id="obs"
 placeholder="Observações do pedido..."></textarea>
 
 <select id="pagamento">
 
 <option>Pix</option>
-
 <option>Cartão</option>
-
 <option>Dinheiro</option>
 
 </select>
 
-<button class="finalizar"
+<button
+class="finalizar"
 onclick="finalizarPedido()">
-
-<i class="fa-solid fa-check"></i>
 
 Enviar Pedido
 
 </button>
 
-<button class="finalizar fechar"
+<button
+class="finalizar fechar"
 onclick="fecharCheckout()">
 
 Fechar
@@ -703,39 +460,61 @@ Fechar
 </button>
 
 </div>
+
 </div>
 
 <script>
 
-let carrinho=[];
+/* ================= PRODUTOS ================= */
 
 let produtos =
 JSON.parse(localStorage.getItem("produtos")) || [
 
 {
 nome:"Pão Francês",
-preco:"0.80",
+preco:0.80,
 imagem:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
 },
 
 {
 nome:"Pão de Queijo",
-preco:"3.00",
+preco:3.00,
 imagem:"https://cdn-icons-png.flaticon.com/512/6978/6978255.png"
 },
 
 {
 nome:"Café",
-preco:"4.50",
+preco:4.50,
 imagem:"https://cdn-icons-png.flaticon.com/512/590/590836.png"
 }
 
 ];
 
-function add(i){
+/* SALVA */
+
+function salvarProdutos(){
+
+localStorage.setItem(
+"produtos",
+JSON.stringify(produtos)
+);
+
+}
+
+salvarProdutos();
+
+/* ================= CARRINHO ================= */
+
+let carrinho = [];
+
+function add(index){
+
+let produto = produtos[index];
 
 let item =
-carrinho.find(c=>c.nome===produtos[i].nome);
+carrinho.find(
+c => c.nome === produto.nome
+);
 
 if(item){
 
@@ -744,7 +523,7 @@ item.qtd++;
 }else{
 
 carrinho.push({
-...produtos[i],
+...produto,
 qtd:1
 });
 
@@ -754,6 +533,8 @@ renderCart();
 
 }
 
+/* + */
+
 function plus(i){
 
 carrinho[i].qtd++;
@@ -762,11 +543,13 @@ renderCart();
 
 }
 
+/* - */
+
 function minus(i){
 
 carrinho[i].qtd--;
 
-if(carrinho[i].qtd<=0){
+if(carrinho[i].qtd <= 0){
 
 carrinho.splice(i,1);
 
@@ -776,27 +559,28 @@ renderCart();
 
 }
 
+/* ================= RENDER ================= */
+
 function render(){
 
-produtos =
-JSON.parse(localStorage.getItem("produtos")) || [];
-
 let busca =
-document.getElementById("busca")
-.value.toLowerCase();
+document
+.getElementById("busca")
+.value
+.toLowerCase();
 
 let lista =
-produtos.filter(p=>
+produtos.filter(p =>
 
-p.nome.toLowerCase().includes(busca)
+p.nome.toLowerCase()
+.includes(busca)
 
 );
 
-document.getElementById("grid").innerHTML =
+document.getElementById("grid")
+.innerHTML =
 
-lista.map((p)=>
-
-`
+lista.map((p,index)=>`
 
 <div class="card">
 
@@ -805,11 +589,12 @@ lista.map((p)=>
 <h3>${p.nome}</h3>
 
 <p>
-R$ ${parseFloat(p.preco).toFixed(2)}
+R$ ${Number(p.preco).toFixed(2)}
 </p>
 
-<button class="add"
-onclick="add(${produtos.indexOf(p)})">
+<button
+class="add"
+onclick="add(${index})">
 
 +
 
@@ -817,41 +602,43 @@ onclick="add(${produtos.indexOf(p)})">
 
 </div>
 
-`
-
-).join("");
+`).join("");
 
 }
 
+/* ================= CARRINHO ================= */
+
 function renderCart(){
 
-let total=0;
+let total = 0;
 
-document.getElementById("cart").innerHTML =
+document.getElementById("cart")
+.innerHTML =
 
-carrinho.map((c,i)=>{
+carrinho.map((item,i)=>{
 
-let preco =
-parseFloat(c.preco);
-
-total += preco*c.qtd;
+total += item.preco * item.qtd;
 
 return `
 
 <div class="item">
 
-<span>${c.nome} x${c.qtd}</span>
+<span>
+${item.nome} x${item.qtd}
+</span>
 
 <div class="item-buttons">
 
-<button class="btn plus"
+<button
+class="btn plus"
 onclick="plus(${i})">
 
 +
 
 </button>
 
-<button class="btn minus"
+<button
+class="btn minus"
 onclick="minus(${i})">
 
 -
@@ -871,9 +658,11 @@ document.getElementById("total")
 
 }
 
+/* ================= CHECKOUT ================= */
+
 function openCheckout(){
 
-if(carrinho.length===0){
+if(carrinho.length === 0){
 
 alert("Adicione itens!");
 
@@ -882,16 +671,18 @@ return;
 }
 
 document.getElementById("checkout")
-.style.display="flex";
+.style.display = "flex";
 
 }
 
 function fecharCheckout(){
 
 document.getElementById("checkout")
-.style.display="none";
+.style.display = "none";
 
 }
+
+/* ================= FINALIZAR ================= */
 
 function finalizarPedido(){
 
@@ -911,9 +702,9 @@ let pagamento =
 document.getElementById("pagamento").value;
 
 if(
-nome==="" ||
-telefone==="" ||
-endereco===""
+nome === "" ||
+telefone === "" ||
+endereco === ""
 ){
 
 alert("Preencha os campos!");
@@ -922,7 +713,7 @@ return;
 
 }
 
-let pedido="";
+let pedido = "";
 
 carrinho.forEach(item=>{
 
@@ -954,19 +745,17 @@ ${pedido}
 
 *Observações:* ${obs}`;
 
-let numero =
-"553499791144";
+let numero = "553499791144";
 
 let url =
+
 `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
 window.open(url,"_blank");
 
 }
 
-window.addEventListener("focus",()=>{
-render();
-});
+/* ================= INICIAR ================= */
 
 render();
 
