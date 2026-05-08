@@ -362,7 +362,7 @@ onkeyup="render()">
 
 </div>
 
-<!-- GRID -->
+<!-- PRODUTOS -->
 
 <div class="grid" id="grid"></div>
 
@@ -462,46 +462,21 @@ Fechar
 
 <script>
 
-/* LIMPAR DADOS ANTIGOS */
-
-localStorage.clear();
-
 /* ================= PRODUTOS ================= */
 
-let produtos = [
-
-{
-nome:"Pão Francês",
-preco:0.80,
-imagem:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
-},
-
-{
-nome:"Pão de Queijo",
-preco:3.00,
-imagem:"https://cdn-icons-png.flaticon.com/512/6978/6978255.png"
-},
-
-{
-nome:"Café",
-preco:4.50,
-imagem:"https://cdn-icons-png.flaticon.com/512/590/590836.png"
-}
-
-];
-
-/* SALVAR */
-
-localStorage.setItem(
-"produtos",
-JSON.stringify(produtos)
-);
+let produtos =
+JSON.parse(localStorage.getItem("produtos")) || [];
 
 /* ================= CARRINHO ================= */
 
 let carrinho = [];
 
+/* ================= ADICIONAR ================= */
+
 function addProduto(produto){
+
+produto.preco =
+parseFloat(produto.preco);
 
 let item =
 carrinho.find(
@@ -516,7 +491,7 @@ item.qtd++;
 
 carrinho.push({
 nome:produto.nome,
-preco:parseFloat(produto.preco),
+preco:produto.preco,
 imagem:produto.imagem,
 qtd:1
 });
@@ -527,7 +502,7 @@ renderCart();
 
 }
 
-/* + */
+/* ================= MAIS ================= */
 
 function plus(i){
 
@@ -537,7 +512,7 @@ renderCart();
 
 }
 
-/* - */
+/* ================= MENOS ================= */
 
 function minus(i){
 
@@ -557,6 +532,9 @@ renderCart();
 
 function render(){
 
+produtos =
+JSON.parse(localStorage.getItem("produtos")) || [];
+
 let busca =
 document
 .getElementById("busca")
@@ -564,7 +542,7 @@ document
 .toLowerCase();
 
 let lista =
-produtos.filter(p =>
+produtos.filter(p=>
 
 p.nome.toLowerCase()
 .includes(busca)
@@ -753,7 +731,15 @@ window.open(url,"_blank");
 
 }
 
-/* INICIAR */
+/* ================= ATUALIZAR ================= */
+
+window.addEventListener("focus",()=>{
+
+render();
+
+});
+
+/* ================= INICIAR ================= */
 
 render();
 
