@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Painel Admin | Trigo Pão</title>
+<link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+:root{
+--marrom:#5a2d18;
+--laranja:#d89b5b;
+--vermelho:#b54a67;
+--fundo:#f6efe8;
+--branco:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:var(--fundo);
+min-height:100vh;
+display:flex;
+}
+
+/* LOGIN */
+
+.loginTela{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(135deg,#5a2d18,#7b4122,#d89b5b);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+padding:20px;
+}
+
+.loginBox{
+width:100%;
+max-width:420px;
+background:white;
+padding:35px;
+border-radius:30px;
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+text-align:center;
+animation:fade .4s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.loginBox i{
+font-size:60px;
+color:var(--laranja);
+margin-bottom:15px;
+}
+
+.loginBox h2{
+color:var(--marrom);
+margin-bottom:5px;
+}
+
+.loginBox p{
+color:#777;
+margin-bottom:25px;
+}
+
+.loginBox input{
+width:100%;
+padding:16px;
+border:none;
+background:#f4f4f4;
+border-radius:18px;
+margin-bottom:15px;
+font-size:15px;
+outline:none;
+}
+
+.loginBox button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:18px;
+background:var(--laranja);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.loginBox button:hover{
+background:#c68a4f;
+transform:scale(1.02);
+}
+
+#erroLogin{
+display:block;
+margin-top:15px;
+color:red;
+font-size:14px;
+font-weight:bold;
+}
+
+/* MENU */
+
+.sidebar{
+width:260px;
+background:linear-gradient(180deg,#5a2d18,#7b4122);
+padding:30px 20px;
+color:white;
+position:fixed;
+height:100%;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:40px;
+}
+
+.logo i{
+font-size:35px;
+color:var(--laranja);
+}
+
+.logo h1{
+font-size:26px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.menu a{
+text-decoration:none;
+background:rgba(255,255,255,.08);
+padding:15px;
+border-radius:15px;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+.menu a:hover{
+background:var(--laranja);
+}
+
+/* CONTEÚDO */
+
+.main{
+margin-left:260px;
+padding:35px;
+width:100%;
+}
+
+.topo{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.topo h2{
+font-size:32px;
+color:var(--marrom);
+}
+
+.btnAdd{
+background:var(--laranja);
+border:none;
+padding:15px 22px;
+border-radius:15px;
+font-size:16px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.btnAdd:hover{
+transform:scale(1.03);
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.info{
+padding:20px;
+}
+
+.info h3{
+color:var(--marrom);
+font-size:24px;
+margin-bottom:8px;
+}
+
+.preco{
+font-size:22px;
+font-weight:bold;
+color:var(--laranja);
+margin-bottom:15px;
+}
+
+.acoes{
+display:flex;
+gap:10px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.editar{
+background:var(--laranja);
+color:white;
+}
+
+.excluir{
+background:var(--vermelho);
+color:white;
+}
+
+.btn:hover{
+opacity:.9;
+transform:translateY(-2px);
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:999;
+}
+
+.modal.active{
+display:flex;
+}
+
+.formulario{
+background:white;
+width:100%;
+max-width:500px;
+border-radius:25px;
+padding:30px;
+}
+
+.formulario h2{
+margin-bottom:20px;
+color:var(--marrom);
+}
+
+.input{
+margin-bottom:18px;
+}
+
+.input label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:var(--marrom);
+}
+
+.input input{
+width:100%;
+padding:15px;
+border-radius:14px;
+border:2px solid #eee;
+font-size:15px;
+outline:none;
+}
+
+.preview{
+width:100%;
+height:220px;
+border-radius:18px;
+object-fit:cover;
+background:#eee;
+margin-top:10px;
+}
+
+.botoes{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.salvar{
+flex:1;
+padding:15px;
+border:none;
+border-radius:15px;
+background:var(--laranja);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.cancelar{
+flex:1;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#ccc;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+@media(max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+height:auto;
+position:relative;
+}
+
+.main{
+margin-left:0;
+}
+
+.topo{
+flex-direction:column;
+gap:15px;
+align-items:flex-start;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="loginTela" id="loginTela">
+
+<div class="loginBox">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h2>Painel Administrativo</h2>
+
+<p>TRIGO PÃO</p>
+
+<input 
+type="email"
+id="email"
+placeholder="Digite seu email">
+
+<input 
+type="password"
+id="senha"
+placeholder="Digite sua senha">
+
+<button onclick="login()">
+Entrar
+</button>
+
+<span id="erroLogin"></span>
+
+</div>
+
+</div>
+
+<!-- MENU -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h1>TRIGO PÃO</h1>
+</div>
+
+<div class="menu">
+
+<a href="cardapio.html">
+<i class="fa-solid fa-house"></i>
+Painel
+</a>
+
+<a href="configuracao.html">
+<i class="fa-solid fa-gear"></i>
+Configurações
+</a>
+
+<a href="#" onclick="sair()">
+<i class="fa-solid fa-right-from-bracket"></i>
+Sair
+</a>
+
+</div>
+
+</div>
+
+<!-- CONTEÚDO -->
+
+<div class="main">
+
+<div class="topo">
+
+<h2>Painel do Cardápio</h2>
+
+<button class="btnAdd" onclick="abrirModal()">
+<i class="fa-solid fa-plus"></i>
+Adicionar Produto
+</button>
+
+</div>
+
+<div class="grid" id="gridProdutos"></div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="formulario">
+
+<h2 id="tituloModal">Adicionar Produto</h2>
+
+<div class="input">
+<label>Nome do produto</label>
+<input type="text" id="nome">
+</div>
+
+<div class="input">
+<label>Preço</label>
+<input type="text" id="preco">
+</div>
+
+<div class="input">
+<label>Imagem da internet (URL)</label>
+<input type="text" id="imagemUrl">
+</div>
+
+<div class="input">
+<label>Ou foto do computador</label>
+<input type="file" id="imagemFile" accept="image/*">
+</div>
+
+<img id="preview" class="preview">
+
+<div class="botoes">
+
+<button class="salvar" onclick="salvarProduto()">
+Salvar
+</button>
+
+<button class="cancelar" onclick="fecharModal()">
+Cancelar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// LOGIN
+
+const EMAIL = "trigopao@hotmail.com";
+const SENHA = "trigopatos1144";
+
+function login(){
+
+let email =
+document.getElementById("email").value;
+
+let senha =
+document.getElementById("senha").value;
+
+if(
+email === EMAIL &&
+senha === SENHA
+){
+
+localStorage.setItem("adminLogado","true");
+
+document.getElementById("loginTela")
+.style.display = "none";
+
+}else{
+
+document.getElementById("erroLogin")
+.innerText = "Email ou senha incorretos!";
+
+}
+
+}
+
+// VERIFICA LOGIN
+
+if(
+localStorage.getItem("adminLogado")
+=== "true"
+){
+
+document.getElementById("loginTela")
+.style.display = "none";
+
+}
+
+// SAIR
+
+function sair(){
+
+localStorage.removeItem("adminLogado");
+
+location.reload();
+
+}
+
+// PRODUTOS
+
+let produtos = JSON.parse(localStorage.getItem("produtos")) || [
+
+{
+nome:"Pão Francês",
+preco:"R$ 1,00",
+imagem:"https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1000&auto=format&fit=crop"
+},
+
+{
+nome:"Café Cremoso",
+preco:"R$ 8,00",
+imagem:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop"
+},
+
+{
+nome:"Bolo de Chocolate",
+preco:"R$ 15,00",
+imagem:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop"
+}
+
+];
+
+let editando = null;
+
+const grid = document.getElementById("gridProdutos");
+
+function salvarStorage(){
+localStorage.setItem("produtos",JSON.stringify(produtos));
+}
+
+function renderizar(){
+
+grid.innerHTML="";
+
+produtos.forEach((produto,index)=>{
+
+grid.innerHTML += `
+
+<div class="card">
+
+<img src="${produto.imagem}">
+
+<div class="info">
+
+<h3>${produto.nome}</h3>
+
+<div class="preco">${produto.preco}</div>
+
+<div class="acoes">
+
+<button class="btn editar"
+onclick="editarProduto(${index})">
+
+<i class="fa-solid fa-pen"></i>
+Editar
+
+</button>
+
+<button class="btn excluir"
+onclick="excluirProduto(${index})">
+
+<i class="fa-solid fa-trash"></i>
+Excluir
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+renderizar();
+
+const modal = document.getElementById("modal");
+
+function abrirModal(){
+
+modal.classList.add("active");
+
+document.getElementById("tituloModal").innerText =
+"Adicionar Produto";
+
+document.getElementById("nome").value="";
+document.getElementById("preco").value="";
+document.getElementById("imagemUrl").value="";
+document.getElementById("imagemFile").value="";
+document.getElementById("preview").src="";
+
+editando = null;
+
+}
+
+function fecharModal(){
+
+modal.classList.remove("active");
+
+}
+
+document.getElementById("imagemUrl")
+.addEventListener("input",function(){
+
+document.getElementById("preview").src =
+this.value;
+
+});
+
+document.getElementById("imagemFile")
+.addEventListener("change",function(){
+
+const arquivo = this.files[0];
+
+if(arquivo){
+
+const leitor = new FileReader();
+
+leitor.onload = function(e){
+
+document.getElementById("preview").src =
+e.target.result;
+
+}
+
+leitor.readAsDataURL(arquivo);
+
+}
+
+});
+
+function salvarProduto(){
+
+const nome =
+document.getElementById("nome").value;
+
+const preco =
+document.getElementById("preco").value;
+
+let imagem =
+document.getElementById("imagemUrl").value;
+
+const file =
+document.getElementById("imagemFile").files[0];
+
+if(file){
+
+const leitor = new FileReader();
+
+leitor.onload = function(e){
+
+imagem = e.target.result;
+
+finalizarSalvar(nome,preco,imagem);
+
+}
+
+leitor.readAsDataURL(file);
+
+}else{
+
+finalizarSalvar(nome,preco,imagem);
+
+}
+
+}
+
+function finalizarSalvar(nome,preco,imagem){
+
+const produto = {
+nome,
+preco,
+imagem
+};
+
+if(editando !== null){
+
+produtos[editando] = produto;
+
+}else{
+
+produtos.push(produto);
+
+}
+
+salvarStorage();
+
+renderizar();
+
+fecharModal();
+
+}
+
+function editarProduto(index){
+
+const produto = produtos[index];
+
+document.getElementById("nome").value =
+produto.nome;
+
+document.getElementById("preco").value =
+produto.preco;
+
+document.getElementById("imagemUrl").value =
+produto.imagem;
+
+document.getElementById("preview").src =
+produto.imagem;
+
+document.getElementById("tituloModal").innerText =
+"Editar Produto";
+
+editando = index;
+
+modal.classList.add("active");
+
+}
+
+function excluirProduto(index){
+
+produtos.splice(index,1);
+
+salvarStorage();
+
+renderizar();
+
+}
+
+</script>
+
+</body>
+</html>

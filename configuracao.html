@@ -1,0 +1,480 @@
+# config.html
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurações | Trigo Pão</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+:root{
+--marrom:#5a2d18;
+--laranja:#d89b5b;
+--fundo:#f6efe8;
+--branco:#fff;
+--verde:#3ca374;
+--vermelho:#c94c4c;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:var(--fundo);
+display:flex;
+min-height:100vh;
+}
+
+/* MENU */
+
+.sidebar{
+width:260px;
+background:linear-gradient(180deg,#5a2d18,#7b4122);
+padding:30px 20px;
+color:white;
+position:fixed;
+height:100%;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:40px;
+}
+
+.logo i{
+font-size:35px;
+color:var(--laranja);
+}
+
+.logo h1{
+font-size:26px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.menu a{
+text-decoration:none;
+background:rgba(255,255,255,.08);
+padding:15px;
+border-radius:15px;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+.menu a:hover{
+background:var(--laranja);
+}
+
+/* MAIN */
+
+.main{
+margin-left:260px;
+padding:35px;
+width:100%;
+}
+
+.topo{
+margin-bottom:30px;
+}
+
+.topo h2{
+font-size:35px;
+color:var(--marrom);
+margin-bottom:8px;
+}
+
+.topo p{
+color:#666;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:25px;
+padding:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card h3{
+color:var(--marrom);
+margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:10px;
+font-size:22px;
+}
+
+.input{
+margin-bottom:18px;
+}
+
+.input label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:var(--marrom);
+}
+
+.input input,
+.input textarea,
+.input select{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#f3f3f3;
+font-size:15px;
+outline:none;
+}
+
+.input textarea{
+height:120px;
+resize:none;
+}
+
+.salvar{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:var(--laranja);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.salvar:hover{
+transform:scale(1.02);
+background:#c28749;
+}
+
+.switch{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#f3f3f3;
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.switch input{
+width:22px;
+height:22px;
+accent-color:var(--laranja);
+}
+
+.status{
+margin-top:15px;
+padding:12px;
+border-radius:12px;
+font-weight:bold;
+display:none;
+}
+
+.sucesso{
+background:#daf5e7;
+color:var(--verde);
+}
+
+@media(max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+height:auto;
+position:relative;
+}
+
+.main{
+margin-left:0;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- MENU -->
+
+<div class="sidebar">
+
+<div class="logo">
+<i class="fa-solid fa-bread-slice"></i>
+<h1>TRIGO PÃO</h1>
+</div>
+
+<div class="menu">
+
+<a href="cardapio.html">
+<i class="fa-solid fa-house"></i>
+Cardápio
+</a>
+
+<a href="adm.html">
+<i class="fa-solid fa-layer-group"></i>
+Painel
+</a>
+
+<a href="config.html">
+<i class="fa-solid fa-gear"></i>
+Configurações
+</a>
+
+</div>
+
+</div>
+
+<!-- CONTEÚDO -->
+
+<div class="main">
+
+<div class="topo">
+<h2>Configurações</h2>
+<p>Gerencie informações da panificadora.</p>
+</div>
+
+<div class="grid">
+
+<!-- CARD 1 -->
+
+<div class="card">
+
+<h3>
+<i class="fa-solid fa-store"></i>
+Informações da Loja
+</h3>
+
+<div class="input">
+<label>Nome da padaria</label>
+<input type="text" id="nomeLoja">
+</div>
+
+<div class="input">
+<label>Telefone</label>
+<input type="text" id="telefoneLoja">
+</div>
+
+<div class="input">
+<label>Endereço</label>
+<textarea id="enderecoLoja"></textarea>
+</div>
+
+<button class="salvar" onclick="salvarLoja()">
+Salvar Informações
+</button>
+
+<div class="status sucesso" id="statusLoja">
+Informações salvas com sucesso!
+</div>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="card">
+
+<h3>
+<i class="fa-solid fa-clock"></i>
+Funcionamento
+</h3>
+
+<div class="input">
+<label>Segunda à Sexta</label>
+<input type="text" id="semana">
+</div>
+
+<div class="input">
+<label>Sábado</label>
+<input type="text" id="sabado">
+</div>
+
+<div class="input">
+<label>Domingos e Feriados</label>
+<input type="text" id="domingo">
+</div>
+
+<button class="salvar" onclick="salvarHorario()">
+Salvar Horários
+</button>
+
+<div class="status sucesso" id="statusHorario">
+Horários atualizados!
+</div>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="card">
+
+<h3>
+<i class="fa-solid fa-sliders"></i>
+Sistema
+</h3>
+
+<div class="switch">
+<span>Receber pedidos</span>
+<input type="checkbox" id="pedidos">
+</div>
+
+<div class="switch">
+<span>Mostrar carrinho</span>
+<input type="checkbox" id="carrinho">
+</div>
+
+<div class="switch">
+<span>Mostrar preços</span>
+<input type="checkbox" id="precos">
+</div>
+
+<button class="salvar" onclick="salvarSistema()">
+Salvar Sistema
+</button>
+
+<div class="status sucesso" id="statusSistema">
+Sistema atualizado!
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrarStatus(id){
+
+const status = document.getElementById(id);
+
+status.style.display = "block";
+
+setTimeout(()=>{
+status.style.display = "none";
+},3000);
+
+}
+
+// LOJA
+
+function salvarLoja(){
+
+const dados = {
+nome:document.getElementById("nomeLoja").value,
+telefone:document.getElementById("telefoneLoja").value,
+endereco:document.getElementById("enderecoLoja").value
+}
+
+localStorage.setItem(
+"configLoja",
+JSON.stringify(dados)
+);
+
+mostrarStatus("statusLoja");
+
+}
+
+// HORÁRIO
+
+function salvarHorario(){
+
+const horario = {
+semana:document.getElementById("semana").value,
+sabado:document.getElementById("sabado").value,
+domingo:document.getElementById("domingo").value
+}
+
+localStorage.setItem(
+"horarioLoja",
+JSON.stringify(horario)
+);
+
+mostrarStatus("statusHorario");
+
+}
+
+// SISTEMA
+
+function salvarSistema(){
+
+const sistema = {
+pedidos:document.getElementById("pedidos").checked,
+carrinho:document.getElementById("carrinho").checked,
+precos:document.getElementById("precos").checked
+}
+
+localStorage.setItem(
+"sistemaLoja",
+JSON.stringify(sistema)
+);
+
+mostrarStatus("statusSistema");
+
+}
+
+// CARREGAR DADOS
+
+const loja = JSON.parse(localStorage.getItem("configLoja"));
+
+if(loja){
+
+document.getElementById("nomeLoja").value = loja.nome || "";
+document.getElementById("telefoneLoja").value = loja.telefone || "";
+document.getElementById("enderecoLoja").value = loja.endereco || "";
+
+}
+
+const horario = JSON.parse(localStorage.getItem("horarioLoja"));
+
+if(horario){
+
+document.getElementById("semana").value = horario.semana || "";
+document.getElementById("sabado").value = horario.sabado || "";
+document.getElementById("domingo").value = horario.domingo || "";
+
+}
+
+const sistema = JSON.parse(localStorage.getItem("sistemaLoja"));
+
+if(sistema){
+
+document.getElementById("pedidos").checked = sistema.pedidos;
+document.getElementById("carrinho").checked = sistema.carrinho;
+document.getElementById("precos").checked = sistema.precos;
+
+}
+
+</script>
+
+</body>
+</html>
+```

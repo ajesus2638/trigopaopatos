@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Trigo Pão Panificadora</title>
+<link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+:root{
+--marrom:#5a2d18;
+--amarelo:#d8b07a;
+--vermelho:#b14b67;
+--papel:#fffdf8;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+min-height:100vh;
+background:
+linear-gradient(135deg,#5a2d18,#7b3f22,#d38a42);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow-x:hidden;
+}
+
+/* CADERNO */
+
+.caderno{
+width:100%;
+max-width:470px;
+background:var(--papel);
+border-radius:30px;
+padding:35px 25px 35px 95px;
+position:relative;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+/* TRIGOS */
+
+.trigos{
+position:absolute;
+left:18px;
+top:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.trigo{
+width:44px;
+height:62px;
+border-radius:
+0 100px 0 100px;
+transform:rotate(45deg);
+box-shadow:
+4px 4px 10px rgba(0,0,0,.18);
+}
+
+.amarelo{
+background:var(--amarelo);
+}
+
+.vermelho{
+background:var(--vermelho);
+}
+
+
+.linhas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+repeating-linear-gradient(
+to bottom,
+transparent 0px,
+transparent 39px,
+rgba(0,0,0,.05) 40px
+);
+pointer-events:none;
+}
+
+/* TOPO */
+
+.topo{
+text-align:center;
+margin-bottom:30px;
+position:relative;
+z-index:2;
+}
+
+.topo i{
+font-size:42px;
+color:var(--amarelo);
+margin-bottom:12px;
+}
+
+.topo h1{
+font-size:33px;
+color:var(--marrom);
+letter-spacing:2px;
+margin-bottom:5px;
+}
+
+.topo p{
+font-size:14px;
+color:#666;
+}
+
+/* TABELA */
+
+.tabela{
+display:flex;
+flex-direction:column;
+gap:18px;
+position:relative;
+z-index:2;
+}
+
+.card{
+background:white;
+padding:18px;
+border-radius:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+border-left:6px solid var(--amarelo);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.info{
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.info span{
+font-size:18px;
+font-weight:bold;
+color:var(--marrom);
+}
+
+.info small{
+font-size:13px;
+color:#777;
+}
+
+.hora{
+font-size:16px;
+font-weight:bold;
+color:var(-amarelo);
+}
+
+/* FECHADO */
+
+.fechado{
+border-left:6px solid var(--vermelho);
+}
+
+.fechado .hora{
+color:var(--vermelho);
+}
+
+/* BOTÃO */
+
+.btn{
+width:100%;
+background-color: #c28f57;
+margin-top:28px;
+padding:17px;
+border:none;
+border-radius:20px;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+position:relative;
+z-index:2;
+}
+
+.btn:hover{
+background:#775836;
+transform:scale(1.02);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="caderno">
+
+<!-- TRIGOS -->
+
+<div class="trigos">
+
+<div class="trigo vermelho"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+
+<div class="trigo vermelho"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+
+<div class="trigo vermelho"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+<div class="trigo amarelo"></div>
+
+<div class="trigo vermelho"></div>
+
+</div>
+
+<!-- LINHAS -->
+
+<div class="linhas"></div>
+
+<!-- TOPO -->
+
+<div class="topo">
+
+<i class="fa-solid fa-clock"></i>
+
+<h1>TRIGO PÃO</h1>
+
+<p>Horários de funcionamento</p>
+
+</div>
+
+<!-- HORÁRIOS -->
+
+<div class="tabela">
+
+<div class="card">
+
+<div class="info">
+<span>Segunda à Sexta</span>
+<small>Atendimento normal</small>
+</div>
+
+<div class="hora">
+06:00 às 20:00
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="info">
+<span>Sábado</span>
+<small>Funcionamento reduzido</small>
+</div>
+
+<div class="hora">
+06:00 às 17:00
+</div>
+
+</div>
+
+<div class="card fechado">
+
+<div class="info">
+<span>Domingos e Feriados</span>
+<small>Não abrimos</small>
+</div>
+
+<div class="hora">
+Fechado
+</div>
+
+</div>
+
+</div>
+
+<!-- BOTÃO -->
+
+<button class="btn"
+onclick="window.location.href='index.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+Voltar
+
+</button>
+
+</div>
+
+</body>
+</html>
