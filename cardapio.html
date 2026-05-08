@@ -18,7 +18,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 --marrom:#5a2d18;
 --laranja:#d2691e;
 --fundo:#fff3e6;
---branco:#ffffff;
 }
 
 *{
@@ -133,8 +132,6 @@ font-weight:bold;
 color:var(--laranja);
 margin-bottom:10px;
 }
-
-/* BOTÃO + */
 
 .add{
 position:absolute;
@@ -365,7 +362,7 @@ onkeyup="render()">
 
 </div>
 
-<!-- PRODUTOS -->
+<!-- GRID -->
 
 <div class="grid" id="grid"></div>
 
@@ -490,7 +487,7 @@ imagem:"https://cdn-icons-png.flaticon.com/512/590/590836.png"
 
 ];
 
-/* SALVA */
+/* SALVAR */
 
 function salvarProdutos(){
 
@@ -507,9 +504,7 @@ salvarProdutos();
 
 let carrinho = [];
 
-function add(index){
-
-let produto = produtos[index];
+function addProduto(produto){
 
 let item =
 carrinho.find(
@@ -524,6 +519,7 @@ item.qtd++;
 
 carrinho.push({
 ...produto,
+preco:parseFloat(produto.preco),
 qtd:1
 });
 
@@ -580,7 +576,7 @@ p.nome.toLowerCase()
 document.getElementById("grid")
 .innerHTML =
 
-lista.map((p,index)=>`
+lista.map((p)=>`
 
 <div class="card">
 
@@ -589,12 +585,12 @@ lista.map((p,index)=>`
 <h3>${p.nome}</h3>
 
 <p>
-R$ ${Number(p.preco).toFixed(2)}
+R$ ${parseFloat(p.preco).toFixed(2)}
 </p>
 
 <button
 class="add"
-onclick="add(${index})">
+onclick='addProduto(${JSON.stringify(p)})'>
 
 +
 
@@ -617,14 +613,17 @@ document.getElementById("cart")
 
 carrinho.map((item,i)=>{
 
-total += item.preco * item.qtd;
+total +=
+parseFloat(item.preco) * item.qtd;
 
 return `
 
 <div class="item">
 
 <span>
+
 ${item.nome} x${item.qtd}
+
 </span>
 
 <div class="item-buttons">
@@ -745,10 +744,9 @@ ${pedido}
 
 *Observações:* ${obs}`;
 
-let numero = "553499791144";
+let numero = "5534999791144";
 
 let url =
-
 `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
 window.open(url,"_blank");
